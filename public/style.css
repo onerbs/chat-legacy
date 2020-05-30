@@ -1,0 +1,26 @@
+*, ::before, ::after {
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+a, a:visited, a:active, a:hover {
+/*
+ * Q: Hay una forma de no hard-codear el valor
+ * de 'color' y que lo tome del tema (theme.json)?
+ */
+  color: #e82b7c;
+  text-decoration: none;
+}
+input, button {
+  outline: none;
+}
+label {
+  opacity: 0.75;
+}
+.material-icons {
+  cursor: pointer;
+}
