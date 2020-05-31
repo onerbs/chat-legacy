@@ -5,7 +5,7 @@ import { Icon } from './Icon'
 import { STORE__CLEAR } from '../lib/actions'
 import { Store } from '../lib/store'
 import { connect } from 'react-redux'
-const RoomCreator = lazy(() => import('./RoomMaker'))
+const Portal = lazy(() => import('./Portal'))
 
 type props = {
   activeRoom: string
@@ -18,7 +18,7 @@ function Navigation({activeRoom, hash, name, logout}: props) {
   return (<>
     {isAdding && (
       <Suspense fallback={<span/>}>
-        <RoomCreator close={() => addNew(false)} />
+        <Portal close={() => addNew(false)} />
       </Suspense>
     )}
 

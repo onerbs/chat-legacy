@@ -8,7 +8,7 @@ type props = {
   close(): void
   join(name: string): Promise<Action>
 }
-function RoomMaker({close, join}: props) {
+function Portal({close, join}: props) {
   const [name, setName] = useState('')
   const input = useRef<HTMLInputElement>(null)
 
@@ -44,7 +44,7 @@ function RoomMaker({close, join}: props) {
             join(name)
             close()
           }}
-        >Buscar</Button>
+        >Unirme</Button>
       </Box>
     </Flex>
   )
@@ -54,4 +54,4 @@ export default connect (
   dispatch => ({
     join: (name: string) => rooms.join(name).then(dispatch)
   })
-)(RoomMaker)
+)(Portal)
