@@ -5,7 +5,6 @@ import { Icon } from './Icon'
 import { STORE__CLEAR } from '../lib/actions'
 import { Store } from '../lib/store'
 import { connect } from 'react-redux'
-import { useHistory } from 'react-router'
 const Portal = lazy(() => import('./Portal'))
 
 type props = {
@@ -16,7 +15,6 @@ type props = {
 }
 function Navigation({activeRoom, hash, name, logout}: props) {
   const [isAdding, addNew] = useState(false)
-  const history = useHistory()
   return (<>
     {isAdding && (
       <Suspense fallback={<span/>}>
@@ -32,10 +30,7 @@ function Navigation({activeRoom, hash, name, logout}: props) {
         </Text>
         <Text sx={{ lineHeight: 1 }}>
           <Icon name="add" onClick={() => addNew(true)} />
-          <Icon name="exit_to_app" onClick={() => {
-            logout()
-            history.push("/")
-          }} />
+          <Icon name="exit_to_app" onClick={logout} />
         </Text>
       </Flex>
 
@@ -55,5 +50,10 @@ export default connect (
     hash: session.hash,
     name: session.displayName
   }),
-  dispatch => ({ logout: () => dispatch({ type: STORE__CLEAR }) })
+  dispatch => ({
+    logout: () => {
+      dispatch({ type: STORE__CLEAR })
+      window.location.replace("/")
+    }
+  })
 )(Navigation)
