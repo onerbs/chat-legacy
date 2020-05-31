@@ -1,6 +1,6 @@
 import React, { lazy, Suspense, useEffect } from 'react'
 import store, { initStore } from './lib/store'
-import { Route, Switch, useHistory } from 'react-router-dom'
+import { Route, Switch, useHistory, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 const Door = lazy(() => import('./views/Door'))
@@ -26,7 +26,6 @@ function App({init}: {init(): Promise<string>}) {
 
   return (
     <Switch>
-
       <Route path={Routes.SIGN_IN}>
         <Suspense fallback={<span/>}>
           <Door
@@ -51,6 +50,7 @@ function App({init}: {init(): Promise<string>}) {
         </Suspense>
       </Route>
 
+      <Route><Redirect to="/"/></Route>
     </Switch>
   )
 }
