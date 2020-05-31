@@ -49,10 +49,23 @@ function Door({btnText, linKText, route, signIn, signUp}: props) {
 
           <Button mb={3} sx={{ width: '100%' }}
             onClick={() => {
-              (route === Routes.SIGN_IN
-                ? signUp(email, password)
-                : signIn(email, password)
-              ).then(() => history.push(Routes.MAIN))
+              if (email.trim().length === 0) {
+                console.assert(false, 'email is empty')
+                return
+              }
+              if (password.length < 8) {
+                console.assert(false, 'password is less than 8')
+                return
+              }
+              const redirect = () => {
+                console.log('redireccionando...')
+                history.push(Routes.MAIN)
+              }
+              if (route === Routes.SIGN_UP) {
+                signIn(email, password).then(redirect)
+              } else {
+                signUp(email, password).then(redirect)
+              }
             }}
           >{btnText}</Button>
           o <Link replace color="secondary" to={route}>{linKText}</Link>
@@ -64,7 +77,7 @@ function Door({btnText, linKText, route, signIn, signUp}: props) {
 export default connect (
   null,
   dispatch => ({
-    signUp:(email: string, password: string) => user.signUp(email, password).then(dispatch),
-    signIn:(email: string, password: string) => user.signIn(email, password).then(dispatch)
+    signIn: (email: string, password: string) => user.signIn(email, password).then(dispatch),
+    signUp: (email: string, password: string) => user.signUp(email, password).then(dispatch)
   })
 )(Door)
