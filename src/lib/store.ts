@@ -37,9 +37,10 @@ export type Action = {
 }
 
 const initialState: Store = {
-  rooms: [],
+  displayName: '',
   hash: '',
-  name: '',
+  photoUrl: '',
+  rooms: [],
   token: ''
 }
 

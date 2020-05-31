@@ -67,7 +67,7 @@ function Messages({room, name, send}: props) {
 }
 export default connect (
   (store: Store) => ({
-    name: store.name
+    name: store.displayName
   }),
   dispatch => ({
     send: (message: Message, addressee: string) => push(message, addressee).then(dispatch)

@@ -48,7 +48,7 @@ export default connect (
   (session: Store, ownProps: { activeRoom: string }) => ({
     activeRoom: ownProps.activeRoom,
     hash: session.hash,
-    name: session.name
+    name: session.displayName
   }),
   dispatch => ({
     logout: () => {

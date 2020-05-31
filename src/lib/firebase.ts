@@ -27,12 +27,14 @@ const get = <T>(path: string) => fs.collection(path) as Collection<T>
 /** Access with user's uid */
 export const Users = get<User>('users')
 export type User<T extends string | string[] = string[]> = {
-  /** Los nombres de las salas a las que el usuario está suscrito */
-  rooms: T
+  /** El nombre del usuario */
+  displayName: string
   /** El hash del usuario */
   hash: string
-  /** El nombre del usuario */
-  name: string
+  /** La URL a la foto del usuario */
+  photoUrl: string
+  /** Los nombres de las salas a las que el usuario está suscrito */
+  rooms: T
 }
 
 /** Access with hash */
